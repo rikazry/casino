@@ -48,8 +48,10 @@ def martingale_func(p, capital, prints = False):
             if capital + pnl < 0:
                 # bust
                 break
-            cur_unit = min(2*cur_unit, capital+pnl)
-            if cur_unit == 0:
+            
+            if 2*cur_unit <= capital:
+                cur_unit = cur_unit*2
+            else:
                 break
 
     return {'pnl':pnl, 'max_unit_size':cur_unit, 'max_drawdown':drawdown}
